@@ -17,6 +17,8 @@ type Inputs = {
   sellTime: string;
 };
 
+const dateFormat = "dd/MM/yyyy HH:mm:ss";
+
 export default function StockForm({
   setStockDates,
 }: {
@@ -76,7 +78,7 @@ export default function StockForm({
               <DatePicker
                 selected={value ? new Date(value) : null}
                 placeholderText="Buy time"
-                dateFormat="dd/MM/yyyy"
+                dateFormat={dateFormat}
                 showTimeInput={true}
                 className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
@@ -100,7 +102,7 @@ export default function StockForm({
                 selected={value ? new Date(value) : null}
                 showTimeInput={true}
                 placeholderText="Sell time"
-                dateFormat="dd/MM/yyyy"
+                dateFormat={dateFormat}
                 className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
                 onChange={onChange}
