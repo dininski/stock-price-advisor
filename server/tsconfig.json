@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "include": ["./app.ts", "./**/*.ts"],
-  "exclude": ["./**/*.test.ts", "./build/**/*", "./vitest.config.js"],
+  "exclude": ["./build/**/*", "./vitest.config.js"],
   "compilerOptions": {
     "composite": true,
     "strict": true,
