@@ -36,7 +36,7 @@ const calculateBestPrice = (
   stock: Stock[],
   buyTime: number,
   sellTime: number,
-): PriceResponse | null => {
+): PriceResponse => {
   if (stock.length < 2) {
     throw new Error(
       "Not enough data points for stock. More ticker prices needed.",
