@@ -10,7 +10,7 @@ export default () => {
             Stock advisor
           </h1>
         </header>
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-10">
           <StockDataView />
           <DateRangeForm />
         </div>

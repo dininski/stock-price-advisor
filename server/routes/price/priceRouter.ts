@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getData } from "~/data";
-import { calculateBestPrice } from "~/services/priceService";
+import { getData } from "server/data";
+import { calculateBestPrice } from "server/services/priceService";
 
 const router = Router({ strict: true });
 

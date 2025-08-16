@@ -1,9 +1,8 @@
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { Stock } from "~/model/Stock";
 import { PriceResponse } from "~/routes/price/priceModel";
 import axios from "axios";
 
@@ -22,10 +21,11 @@ export default function SubmitForm() {
   const [profitResult, setData] = useState<PriceResponse | null>(null);
   const [loading, setLoading] = useState(true);
   // TODO: add error handling
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const getStockData = async (buyTime: number, sellTime: number) => {
     try {
+      // TODO: extract as config
       const response = await axios.get<PriceResponse | null>(
         `http://localhost:3030/api/v1/price/best?buyTime=${buyTime}&sellTime=${sellTime}`,
       );
@@ -33,7 +33,7 @@ export default function SubmitForm() {
       setData(response.data);
       setError(null);
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : "Something went wrong");
       setData(null);
     } finally {
       setLoading(false);
@@ -118,7 +118,12 @@ export default function SubmitForm() {
           className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         />
       </form>
-      {profitResult && (
+      {
+      //TODO: sort out error handling
+      }
+      {!loading && error && <>{error}</>}
+
+      {!loading && !error && profitResult && (
         <>
           <div>Profit: {profitResult.profit}</div>
           <div>

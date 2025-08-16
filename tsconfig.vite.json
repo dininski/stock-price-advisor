@@ -5,7 +5,8 @@
     "frontend/**/*",
     "frontend/**/.server/**/*",
     "frontend/**/.client/**/*",
-    "server/**/*"
+    "server/**/*",
+    "frontend.ts"
   ],
   "compilerOptions": {
     "composite": true,

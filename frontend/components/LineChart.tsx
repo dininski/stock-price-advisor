@@ -26,13 +26,22 @@ export default function LineChart({ data }: { data: Stock[] }) {
     datasets: [
       {
         label: "Stock price",
-        data: data.map((val) => ({ y: val.price, x: val.date })),
+        data: data.map((val) => ({ y: val.price, x: new Date(val.date) })),
         borderColor: "rgba(46, 174, 133, 1)",
         backgroundColor: "rgba(16, 85, 88, 0.5)",
       },
     ],
-    labels: data.map((val) => val.date),
+    labels: data.map((val) => new Date(val.date)),
   };
+
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        display: false
+      }
+    }
+  }
   // TODO: make responsive
-  return <Line data={chartData} width={600} height={500} />;
+  return <Line data={chartData} options={options} width={600} height={500} />;
 }

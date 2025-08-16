@@ -1,5 +1,5 @@
-import type { Stock } from "../../model/Stock";
-import { calculateBestPrice } from "../../services/priceService";
+import { Stock } from "server/model/Stock";
+import { calculateBestPrice } from "server/services/priceService";
 
 const generateData = (sample: number[]): Stock[] => {
   return sample.map((val, index) => ({
