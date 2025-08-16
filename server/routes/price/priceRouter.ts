@@ -1,4 +1,4 @@
-import { Router, NextFunction, Request } from "express";
+import { Router, Request } from "express";
 import { getData } from "@stock-advisor/server/data";
 import { calculateBestPrice } from "@stock-advisor/server/services/priceService";
 import { PriceResponse } from "@stock-advisor/shared/response/Price";
