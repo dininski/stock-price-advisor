@@ -74,6 +74,11 @@ export default function LineChart({
                   next,
                   stockDates.buyTime,
                   stockDates.sellTime,
+                ) &&
+                isWithinQueryRange(
+                  current,
+                  stockDates.buyTime,
+                  stockDates.sellTime,
                 )
               ) {
                 return "rgba(214, 224, 112, 1)";
