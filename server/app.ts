@@ -4,6 +4,8 @@ import express from "express";
 import morgan from "morgan";
 import compression from "compression";
 
+console.log('included');
+
 const app = express();
 
 app.use(compression());

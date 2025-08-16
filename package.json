@@ -7,6 +7,9 @@
     "frontend",
     "shared"
   ],
+  "scripts": {
+    "start": "concurrently 'npm run start --workspace server' 'npm run start --workspace frontend'"
+  },
   "dependencies": {
     "@react-router/express": "^7.7.1",
     "@react-router/node": "^7.7.1",

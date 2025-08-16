@@ -10,7 +10,7 @@ app.use(compression());
 app.disable("x-powered-by");
 
 
-if (ENV === 'DEV') {
+if (ENV !== 'PROD') {
   console.log("Starting development server");
   const viteDevServer = await import("vite").then((vite) =>
     vite.createServer({
@@ -20,7 +20,7 @@ if (ENV === 'DEV') {
   app.use(viteDevServer.middlewares);
   app.use(async (req, res, next) => {
     try {
-      const source = await viteDevServer.ssrLoadModule("./server/app.ts");
+      const source = await viteDevServer.ssrLoadModule("app.ts");
       return await source.app(req, res, next);
     } catch (error) {
       if (typeof error === "object" && error instanceof Error) {
