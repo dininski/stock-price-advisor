@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Stock } from "~/model/Stock";
-import LineChart from "~/components/LineChart";
+import { Stock } from "shared/model/Stock";
+import LineChart from "frontend/components/LineChart";
 
 const GetStockData = () => {
   const [data, setData] = useState<Stock[] | null>(null);

@@ -1,4 +1,4 @@
-import { Welcome } from "~/welcome/welcome";
+import { Welcome } from "frontend/welcome/welcome";
 
 export function meta() {
   return [

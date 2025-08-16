@@ -1,4 +1,4 @@
-import DateRangeForm from "~/components/SubmitForm";
+import DateRangeForm from "frontend/components/SubmitForm";
 import StockDataView from "./stockDataView";
 
 export default () => {
