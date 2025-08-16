@@ -27,7 +27,7 @@ export default function StockForm() {
   // TODO: add error handling
   const [error, setError] = useState<string | null>(null);
 
-  const getStockData = async (buyTime: number, sellTime: number) => {
+  const getBestPrice = async (buyTime: number, sellTime: number) => {
     try {
       setLoading(true);
       // TODO: extract as config
@@ -60,13 +60,12 @@ export default function StockForm() {
   };
 
   const onSubmit = (data: Inputs) =>
-    getStockData(Number(data.buyTime), Number(data.sellTime));
+    getBestPrice(Number(data.buyTime), Number(data.sellTime));
 
   // TODO: remove eslint override
   return (
     <div className="w-full max-w-xs">
       <form
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2"
       >
