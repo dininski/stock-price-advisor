@@ -1,8 +1,6 @@
 import type { Stock } from "shared/model/Stock";
 import { PriceResponse } from "shared/response/Price";
 
-// TODO: change return type
-// TODO: error handling
 const calculateBestPrice = (stock: Stock[]): PriceResponse | null => {
   let isProfitable = false;
   if (stock.length < 2) {
