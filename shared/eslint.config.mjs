@@ -33,6 +33,6 @@ export default tseslint.config(
     "node_modules",
     "*.config.*",
     "frontend.dev.js",
-    "server.js",
+    "dev.js",
   ])
 );

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --build",
-    "dev": "node server.js",
+    "dev": "node dev.js",
     "test": "vitest",
     "lint": "eslint"
   },

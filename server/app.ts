@@ -4,13 +4,12 @@ import express from "express";
 import morgan from "morgan";
 import compression from "compression";
 
-console.log('included');
-
 const app = express();
 
 app.use(compression());
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use("/api/v1/", api);
+app.disable("x-powered-by");
 
 export { app };
