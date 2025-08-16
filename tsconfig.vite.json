@@ -5,8 +5,9 @@
     "frontend/**/*",
     "frontend/**/.server/**/*",
     "frontend/**/.client/**/*",
-    "server/**/*",
-    "frontend.ts"
+    "shared/**/*",
+    "frontend.ts",
+    "frontend.dev.js"
   ],
   "compilerOptions": {
     "composite": true,
@@ -19,9 +20,6 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "rootDirs": [".", "./.react-router/types"],
-    "paths": {
-      "~/*": ["frontend/*", "server/*"]
-    },
     "esModuleInterop": true,
     "resolveJsonModule": true
   }

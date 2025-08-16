@@ -1,5 +1,5 @@
-import { Stock } from "server/model/Stock";
 import { calculateBestPrice } from "server/services/priceService";
+import { Stock } from "shared/model/Stock";
 
 const generateData = (sample: number[]): Stock[] => {
   return sample.map((val, index) => ({
@@ -46,7 +46,7 @@ describe("priceService", () => {
     it("returns null when descending", () => {
       const prices = generateData([5, 4, 3, 2, 1]);
       const result = calculateBestPrice(prices);
-      console.log(result)
+      console.log(result);
       expect(result).toBe(null);
     });
   });

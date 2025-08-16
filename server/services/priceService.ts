@@ -1,5 +1,5 @@
-import type { Stock } from "server/model/Stock";
-import type { PriceResponse } from "server/routes/price/priceModel";
+import type { Stock } from "shared/model/Stock";
+import { PriceResponse } from "shared/response/Price";
 
 // TODO: change return type
 // TODO: error handling
@@ -15,7 +15,7 @@ const calculateBestPrice = (stock: Stock[]): PriceResponse | null => {
   let maxProfit = 0;
   let bestBuy = stock[0];
   let bestSell = stock[1];
-  
+
   for (let i = 0; i < stock.length; i++) {
     const profit = stock[i].price - minBuy.price;
     if (profit > maxProfit) {

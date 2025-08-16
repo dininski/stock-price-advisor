@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["frontend.dev.js", "vite.config.ts"],
+  "include": ["shared/**/*"],
   "compilerOptions": {
     "composite": true,
     "strict": true,

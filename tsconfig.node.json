@@ -1,10 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["server.dev.js", "vite.config.ts"],
+  "include": ["server.dev.js", "vite.config.ts", "shared/**/*", "server/**/*"],
   "compilerOptions": {
     "composite": true,
     "strict": true,
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "lib": ["ES2022"],
     "target": "ES2022",
     "module": "ES2022",

@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Stock } from "~/model/Stock";
+import { Stock } from "shared/model/Stock";
 
 ChartJS.register(
   CategoryScale,
@@ -38,10 +38,10 @@ export default function LineChart({ data }: { data: Stock[] }) {
     responsive: true,
     scales: {
       x: {
-        display: false
-      }
-    }
-  }
+        display: false,
+      },
+    },
+  };
   // TODO: make responsive
   return <Line data={chartData} options={options} width={600} height={500} />;
 }

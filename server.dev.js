@@ -11,7 +11,7 @@ app.disable("x-powered-by");
 console.log("Starting development server");
 const viteDevServer = await import("vite").then((vite) =>
   vite.createServer({
-    server: { middlewareMode: true, hmr: {port: 24679} },
+    server: { middlewareMode: true, hmr: { port: 24679 } },
   }),
 );
 app.use(viteDevServer.middlewares);

@@ -4,7 +4,7 @@ import { regenerateData, getData } from "server/data";
 const router = Router({ strict: true });
 
 router.get("/", (req, res) => {
-  res.header('Content-type', 'application/json')
+  res.header("Content-type", "application/json");
   res.status(200);
   res.send(getData());
 });

@@ -30,14 +30,15 @@ const GetStockData = () => {
     void getStockData();
   }, []);
 
-  return <div>
-
+  return (
+    <div>
       {
-      //TODO: sort out error handling
+        //TODO: sort out error handling
       }
-    {!loading && error && <>{error}</>}
-    {!loading && !error && data !== null && <LineChart data={data} />}
-    </div>;
+      {!loading && error && <>{error}</>}
+      {!loading && !error && data !== null && <LineChart data={data} />}
+    </div>
+  );
 };
 
 export default GetStockData;

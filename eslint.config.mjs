@@ -21,6 +21,6 @@ export default tseslint.config(
     "node_modules",
     "*.config.*",
     "frontend.dev.js",
-    "server.dev.js"
+    "server.dev.js",
   ]),
 );

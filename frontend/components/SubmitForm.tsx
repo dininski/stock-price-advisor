@@ -3,8 +3,8 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { PriceResponse } from "~/routes/price/priceModel";
 import axios from "axios";
+import { PriceResponse } from "shared/response/Price";
 
 type Inputs = {
   startDate: string;
@@ -119,7 +119,7 @@ export default function SubmitForm() {
         />
       </form>
       {
-      //TODO: sort out error handling
+        //TODO: sort out error handling
       }
       {!loading && error && <>{error}</>}
 
