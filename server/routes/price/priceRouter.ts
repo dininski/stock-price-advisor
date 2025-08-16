@@ -6,13 +6,16 @@ const router = Router({ strict: true });
 
 router.get("/best", (req, res) => {
   const { buyTime, sellTime } = req.query;
-  console.log(buyTime, sellTime);
+
   if (!buyTime || !sellTime) {
     //TODO: clean up error handling
     res.status(400);
-    console.log("err");
-    res.send({ error: "Provide both buyTime and sellTime." });
-    return;
+    return res.send({ error: "Provide both buyTime and sellTime." });
+  }
+
+  if (sellTime > buyTime) {
+    res.status(400);
+    return res.send({ error: "Sell time cannot be after buy time" });
   }
 
   const result = calculateBestPrice(getData());
