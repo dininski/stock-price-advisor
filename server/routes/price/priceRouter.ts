@@ -8,7 +8,7 @@ import { Response } from "express";
 
 const router = Router({ strict: true });
 
-router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
+router.get("/best", async (req, res: Response<ApiError | PriceResponse | null>) => {
   const { buyTime: buyTimeQueryParam, sellTime: sellTimeQueryParam } =
     req.query;
   if (!buyTimeQueryParam || !sellTimeQueryParam) {
