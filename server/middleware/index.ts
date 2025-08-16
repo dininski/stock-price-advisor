@@ -6,7 +6,7 @@ export const errorMiddleware = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   if (err instanceof ValidationError) {
     respondError(res, err.message, 400);

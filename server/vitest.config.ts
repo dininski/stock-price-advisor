@@ -4,7 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   test: {
     globals: true,
-    exclude: ["**/*.test.js"]
+    exclude: ["**/*.test.js"],
   },
   plugins: [tsconfigPaths()],
 });

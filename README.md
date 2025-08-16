@@ -32,11 +32,11 @@ To execute the entire test suite you can run:
 CI=true npm test --workspaces --if-present
 ```
 
-> Similar to running the project separate you can execute each project tests in watch mode using `npm test --workspace <project>`
+> Similar to running the projects separately you can execute each project tests in watch mode using `npm test --workspace <project>`
 
 ### Deployment
 
-Both the frontend and backend can build artifacts ready for deployment in their respective projects, i.e. `<project>/build`. To do so use:
+Both the frontend and backend build artifacts ready for deployment in their respective projects, i.e. `<project>/build`. To do so use:
 
 ```bash
 npm run build --workspaces --if-present

@@ -5,14 +5,18 @@ import { ValidationError } from "server/util/errors";
 const findElementPosition = (
   data: Stock[],
   time: number,
-  roundUp: boolean
+  roundUp: boolean,
 ): number => {
   if (time < data[0].date) {
-    throw new ValidationError("Time is lower than the minimum value available.");
+    throw new ValidationError(
+      "Time is lower than the minimum value available.",
+    );
   }
 
   if (time > data[data.length - 1].date) {
-    throw new ValidationError("Time is higher that the maximum value available.");
+    throw new ValidationError(
+      "Time is higher that the maximum value available.",
+    );
   }
 
   let start = 0;
@@ -36,11 +40,11 @@ const findElementPosition = (
 const calculateBestPrice = (
   stock: Stock[],
   buyTime: number,
-  sellTime: number
+  sellTime: number,
 ): PriceResponse => {
   if (stock.length < 2) {
     throw new ValidationError(
-      "Not enough data points for stock. More ticker prices needed."
+      "Not enough data points for stock. More ticker prices needed.",
     );
   }
 
