@@ -4,8 +4,15 @@ import LineChart from "frontend/components/common/LineChart";
 import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
 import * as apiClient from "frontend/client";
 import { getAsyncErrorMessage } from "frontend/util";
+import { StockDates } from "./stock";
 
-const GetStockData = () => {
+const StockDataView = ({
+  stockDates,
+  setStockDates,
+}: {
+  stockDates: StockDates | null;
+  setStockDates: React.Dispatch<React.SetStateAction<StockDates | null>>;
+}) => {
   const [data, setData] = useState<Stock[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +39,7 @@ const GetStockData = () => {
     try {
       setLoading(true);
       const response = await apiClient.regenerateData();
-
+      setStockDates(null);
       setData(response.data);
       setError(null);
     } catch (err) {
@@ -48,7 +55,11 @@ const GetStockData = () => {
       <AsyncOpWrapper loading={loading} errorText={error}>
         <>
           <div>
-            <>{data !== null && <LineChart data={data} />}</>
+            <>
+              {data !== null && (
+                <LineChart data={data} stockDates={stockDates} />
+              )}
+            </>
           </div>
           <div>
             <button
@@ -64,4 +75,4 @@ const GetStockData = () => {
   );
 };
 
-export default GetStockData;
+export default StockDataView;

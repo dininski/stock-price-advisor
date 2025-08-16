@@ -54,7 +54,7 @@ describe("priceService", () => {
     it("returns null when descending", () => {
       const prices = generateData([5, 4, 3, 2, 1]);
       const result = calculateBestPrice(prices, 0, 4);
-      expect(result).toBe(null);
+      expect(result?.profit).toEqual(-1);
     });
   });
 

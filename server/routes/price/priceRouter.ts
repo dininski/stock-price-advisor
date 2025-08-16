@@ -39,6 +39,10 @@ router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
   }
 
   const result = calculateBestPrice(getData(), buyTime, sellTime);
+  if (result === null) {
+    res.status(204);
+    return res.send(result);
+  }
   res.status(200);
   res.send(result);
 });

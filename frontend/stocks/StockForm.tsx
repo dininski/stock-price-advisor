@@ -10,13 +10,18 @@ import { Error } from "frontend/components/common/Error";
 import Profit from "frontend/components/profit/ProfitSection";
 import * as apiClient from "frontend/client";
 import { getAsyncErrorMessage } from "frontend/util";
+import { StockDates } from "./stock";
 
 type Inputs = {
   buyTime: string;
   sellTime: string;
 };
 
-export default function StockForm() {
+export default function StockForm({
+  setStockDates,
+}: {
+  setStockDates: React.Dispatch<React.SetStateAction<StockDates | null>>;
+}) {
   const {
     control,
     handleSubmit,
@@ -31,8 +36,16 @@ export default function StockForm() {
     try {
       setLoading(true);
       const response = await apiClient.fetchBestProfit(buyTime, sellTime);
-
-      setData(response.data);
+      console.log(response.data);
+      setStockDates({
+        buyTime,
+        sellTime,
+        bestBuy: response.data?.buyInformation?.date || null,
+        bestSell: response.data?.sellInformation?.date || null,
+      });
+      if (response.data) {
+        setData(response.data);
+      }
       setError(null);
     } catch (err) {
       setError(getAsyncErrorMessage(err));

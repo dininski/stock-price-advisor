@@ -37,7 +37,6 @@ const calculateBestPrice = (
   buyTime: number,
   sellTime: number,
 ): PriceResponse | null => {
-  let isProfitable = false;
   if (stock.length < 2) {
     throw new Error(
       "Not enough data points for stock. More ticker prices needed.",
@@ -52,14 +51,13 @@ const calculateBestPrice = (
   const endPosition = findElementPosition(stock, sellTime, false);
 
   let minBuy = stock[startPosition];
-  let maxProfit = 0;
+  let maxProfit = -Infinity;
   let bestBuy = stock[0];
   let bestSell = stock[1];
 
-  for (let i = startPosition; i < endPosition + 1; i++) {
+  for (let i = startPosition + 1; i < endPosition + 1; i++) {
     const profit = stock[i].price - minBuy.price;
     if (profit > maxProfit) {
-      isProfitable = true;
       maxProfit = profit;
       bestBuy = minBuy;
       bestSell = stock[i];
@@ -70,19 +68,17 @@ const calculateBestPrice = (
     }
   }
 
-  return isProfitable
-    ? {
-        buyInformation: {
-          price: bestBuy.price,
-          date: bestBuy.date,
-        },
-        sellInformation: {
-          price: bestSell.price,
-          date: bestSell.date,
-        },
-        profit: maxProfit,
-      }
-    : null;
+  return {
+    buyInformation: {
+      price: bestBuy.price,
+      date: bestBuy.date,
+    },
+    sellInformation: {
+      price: bestSell.price,
+      date: bestSell.date,
+    },
+    profit: maxProfit,
+  };
 };
 
 export { calculateBestPrice, findElementPosition };
