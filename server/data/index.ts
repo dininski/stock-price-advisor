@@ -8,9 +8,6 @@ const regenerateData = () => {
     price: Math.floor(Math.random() * 400),
     date: startDate + index * 1000
   }))
-
-  console.log('regenerated')
-  console.log(data)
 };
 
 regenerateData();

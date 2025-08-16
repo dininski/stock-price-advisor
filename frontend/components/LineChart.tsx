@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartData,
 } from "chart.js";
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
 ChartJS.register(
   CategoryScale,
@@ -22,25 +22,7 @@ ChartJS.register(
   Legend,
 );
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => Math.floor(Math.random() * 1000)),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => Math.floor(Math.random() * 1000)),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
-export default function Landing() {
+export default function Landing({data}: {data: ChartData<"line", {x:number, y:number}[], string>}) {
   // TODO: make responsive
-  return <Line data={data} width={1000} height={400}/>;
+  return <Line data={data} width={600} height={400}/>;
 }

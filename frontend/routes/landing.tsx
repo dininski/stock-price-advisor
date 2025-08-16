@@ -1,4 +1,29 @@
+import DateRangeForm from "~/components/SubmitForm";
 import LineChart from "../components/LineChart";
+
+const startDate = Date.now();
+
+const sampleData = Array.from(
+  { length: Math.floor(Math.random() * 30) },
+  (_, index) => ({
+    x: startDate + index * 1000,
+    y: Math.floor(Math.random() * 400),
+  }),
+);
+
+console.log(sampleData);
+
+//TODO: fetch data from server
+const data = {
+  datasets: [
+    {
+      label: "Stock ticker",
+      data: sampleData,
+      borderColor: "rgba(46, 174, 133, 1)",
+      backgroundColor: "rgba(16, 85, 88, 0.5)",
+    },
+  ],
+};
 
 export default () => {
   return (
@@ -9,16 +34,9 @@ export default () => {
             Stock advisor
           </h1>
         </header>
-        <div>
-          <LineChart />
-        </div>
-        <div>
-          <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >
-            Regenerate
-          </button>
+        <LineChart data={data} />
+        <div className="flex-col">
+          <DateRangeForm />
         </div>
       </div>
     </main>
