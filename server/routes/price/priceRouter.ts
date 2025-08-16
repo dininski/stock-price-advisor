@@ -4,15 +4,15 @@ const router = Router({strict: true});
 
 const data: Number[] = [];
 
-router.get('/', (req, res) => {
+router.get('/best', (req, res) => {
+    const {startTime, endTime} = req.query;
+    if (!!startTime || !!endTime) {
+        //TODO: add error handling
+        res.status(400);
+        return;
+    }
     res.status(200);
     res.send(JSON.stringify(data));
-});
-
-router.post('/', (req, res) => {
-    // TODO: generate sample data
-    res.status(200);
-    res.send(JSON.stringify({}));
 });
 
 export default router;
