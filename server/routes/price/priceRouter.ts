@@ -29,8 +29,6 @@ router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
   const data = getData();
 
   if (buyTime < data[0].date) {
-    console.log(buyTime);
-    console.log(data[0].date);
     return respondError(res, "Buy time is outside of known stock values.", 4);
   }
 

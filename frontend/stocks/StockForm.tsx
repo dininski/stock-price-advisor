@@ -36,7 +36,7 @@ export default function StockForm({
     try {
       setLoading(true);
       const response = await apiClient.fetchBestProfit(buyTime, sellTime);
-      console.log(response.data);
+
       setStockDates({
         buyTime,
         sellTime,
