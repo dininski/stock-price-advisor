@@ -9,7 +9,7 @@
     "typecheck": "react-router typegen && tsc -b",
     "test": "vitest",
     "clean": "npx rimraf ./build",
-    "check-format": "npx prettier . --write",
+    "check-format": "npx prettier .",
     "format": "npx prettier . --write",
     "lint": "eslint"
   },

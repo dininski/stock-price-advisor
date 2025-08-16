@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint",
-    "check-format": "npx prettier . --write",
+    "check-format": "npx prettier .",
     "format": "npx prettier . --write"
   },
   "dependencies": {},
