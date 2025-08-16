@@ -1,7 +1,7 @@
 import {
   calculateBestPrice,
   findElementPosition,
-} from "server/services/priceService";
+} from "@stock-advisor/server/services/priceService";
 import { Stock } from "@stock-advisor/shared/model/Stock";
 
 const generateData = (sample: number[]): Stock[] => {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { regenerateData, getData } from "server/data";
+import { regenerateData, getData } from "@stock-advisor/server/data";
 
 const router = Router({ strict: true });
 

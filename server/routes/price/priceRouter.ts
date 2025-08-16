@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { getData } from "server/data";
-import { calculateBestPrice } from "server/services/priceService";
-import { respondError } from "server/util/express";
+import { getData } from "@stock-advisor/server/data";
+import { calculateBestPrice } from "@stock-advisor/server/services/priceService";
+import { respondError } from "@stock-advisor/server/util/express";
 import { ApiError } from "@stock-advisor/shared/response/ApiError";
 import { PriceResponse } from "@stock-advisor/shared/response/Price";
 import { Response } from "express";
