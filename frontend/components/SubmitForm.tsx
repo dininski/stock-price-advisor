@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
 import {ApiError} from "shared/response/Error"
+import { formatEpoch } from "shared/lib/dateFormatter";
 
 type Inputs = {
   startDate: string;
@@ -143,10 +144,10 @@ export default function SubmitForm() {
         <>
           <div>Profit: {profitResult.profit}</div>
           <div>
-            Buy date: {new Date(profitResult.buyInformation.date).toString()}
+            Buy date and time: {formatEpoch(profitResult.buyInformation.date)}
           </div>
           <div>
-            Sell date: {new Date(profitResult.sellInformation.date).toString()}
+            Sell date and time: {formatEpoch(profitResult.sellInformation.date)}
           </div>
         </>
       )}

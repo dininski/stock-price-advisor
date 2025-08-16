@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Stock } from "shared/model/Stock";
+import { formatEpoch } from "shared/lib/dateFormatter";
 
 ChartJS.register(
   CategoryScale,
@@ -26,12 +27,12 @@ export default function LineChart({ data }: { data: Stock[] }) {
     datasets: [
       {
         label: "Stock price",
-        data: data.map((val) => ({ y: val.price, x: new Date(val.date) })),
+        data: data.map((val) => ({ y: val.price, x: val.date })),
         borderColor: "rgba(46, 174, 133, 1)",
         backgroundColor: "rgba(16, 85, 88, 0.5)",
       },
     ],
-    labels: data.map((val) => new Date(val.date)),
+    labels: data.map((val) => formatEpoch(val.date)),
   };
 
   const options = {
