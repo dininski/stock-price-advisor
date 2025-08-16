@@ -9,5 +9,5 @@ export function meta() {
 }
 
 export default function Home() {
-  return <Welcome message="Hello" />;
+  return <Welcome message="Stock advisor" />;
 }
