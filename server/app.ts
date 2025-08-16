@@ -1,5 +1,5 @@
 import "react-router";
-import { createRequestHandler } from "@react-router/express";
+import api from './routes'
 import express, { Router } from "express";
 
 declare module "react-router" {
@@ -10,20 +10,4 @@ declare module "react-router" {
 
 export const app = express();
 
-app.use(
-  createRequestHandler({
-    build: () => import("virtual:react-router/server-build"),
-    getLoadContext() {
-      return {
-        VALUE_FROM_EXPRESS: "Hello from Express",
-      };
-    },
-  }),
-);
-
-
-// TODO: to extract to separate file
-const router = Router({strict: true});
-router.post('/path', (req, res) => {
-
-});
+app.use('/api/v1/', api)
