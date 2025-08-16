@@ -9,7 +9,7 @@
     "dev": "tsx watch ./app",
     "test": "vitest",
     "clean": "npx rimraf ./build",
-    "check-format": "npx prettier .",
+    "check-format": "npx prettier . --check",
     "format": "npx prettier . --write",
     "lint": "eslint"
   },
