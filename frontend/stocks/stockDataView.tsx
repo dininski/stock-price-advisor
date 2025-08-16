@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Stock } from "shared/model/Stock";
-import LineChart from "frontend/components/LineChart";
-import { AsyncOpWrapper } from "frontend/components/AsyncOpResult";
+import LineChart from "frontend/components/common/LineChart";
+import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
 
 const GetStockData = () => {
   const [data, setData] = useState<Stock[] | null>(null);

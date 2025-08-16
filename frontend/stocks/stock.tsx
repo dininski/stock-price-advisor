@@ -1,5 +1,5 @@
 import StockForm from "frontend/components/StockForm";
-import StockDataView from "./stockDataView";
+import StockDataView from "./StockDataView";
 
 export default () => {
   return (

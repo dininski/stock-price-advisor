@@ -6,10 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
 import { ApiError } from "shared/response/ApiError";
-import { formatEpoch } from "shared/lib/dateFormatter";
-import { Label } from "./Label";
-import { Error } from "./Error";
-import { AsyncOpWrapper } from "./AsyncOpResult";
+import { Label } from "./common/Label";
+import { Error } from "./common/Error";
+import { AsyncOpWrapper } from "./common/AsyncOpResult";
+import Profit from "./profit/ProfitSection";
 type Inputs = {
   buyTime: string;
   sellTime: string;
@@ -22,7 +22,7 @@ export default function StockForm() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const [profitResult, setData] = useState<PriceResponse | null>(null);
+  const [priceResponse, setData] = useState<PriceResponse | null>(null);
   const [loading, setLoading] = useState(false);
   // TODO: add error handling
   const [error, setError] = useState<string | null>(null);
@@ -38,7 +38,6 @@ export default function StockForm() {
       setData(response.data);
       setError(null);
     } catch (err) {
-      console.log(err);
       // TODO: clean up error
       if (err instanceof AxiosError) {
         const axiosError = err as AxiosError<ApiError>;
@@ -48,10 +47,9 @@ export default function StockForm() {
         } else {
           setError("Something went wrong");
         }
-      } else if (err instanceof Error) {
-        setError(err.message);
       } else {
-        setError("Something went wrong");
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        setError(err instanceof Error ? err.message : "Something went wrong");
       }
       setData(null);
     } finally {
@@ -64,7 +62,7 @@ export default function StockForm() {
 
   // TODO: remove eslint override
   return (
-    <div className="w-full max-w-xs">
+    <div className="w-full max-w-xs flex flex-col">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2"
@@ -123,18 +121,7 @@ export default function StockForm() {
         />
       </form>
       <AsyncOpWrapper loading={loading} errorText={error}>
-        {profitResult && (
-          <>
-            <div>Profit: {profitResult.profit}</div>
-            <div>
-              Buy date and time: {formatEpoch(profitResult.buyInformation.date)}
-            </div>
-            <div>
-              Sell date and time:{" "}
-              {formatEpoch(profitResult.sellInformation.date)}
-            </div>
-          </>
-        )}
+        {priceResponse && <Profit bestPriceResponse={priceResponse} />}
       </AsyncOpWrapper>
     </div>
   );

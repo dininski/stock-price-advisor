@@ -1,4 +1,4 @@
-import { Error } from "frontend/components/Error";
+import { Error } from "frontend/components/common/Error";
 import { ReactElement } from "react";
 
 export const AsyncOpWrapper = (props: {
