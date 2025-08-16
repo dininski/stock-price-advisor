@@ -11,7 +11,6 @@ const router = Router({ strict: true });
 router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
   const { buyTime: buyTimeQueryParam, sellTime: sellTimeQueryParam } =
     req.query;
-  //TODO: clean up error handling
   if (!buyTimeQueryParam || !sellTimeQueryParam) {
     return respondError(res, "Provide both a buy time and a sell time.", 1);
   }
@@ -30,8 +29,8 @@ router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
   const data = getData();
 
   if (buyTime < data[0].date) {
-    console.log(buyTime)
-    console.log(data[0].date)
+    console.log(buyTime);
+    console.log(data[0].date);
     return respondError(res, "Buy time is outside of known stock values.", 4);
   }
 

@@ -3,13 +3,14 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
-import { ApiError } from "shared/response/ApiError";
 import { Label } from "frontend/components/common/Label";
 import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
 import { Error } from "frontend/components/common/Error";
 import Profit from "frontend/components/profit/ProfitSection";
+import * as apiClient from "frontend/client";
+import { getAsyncErrorMessage } from "frontend/util";
+
 type Inputs = {
   buyTime: string;
   sellTime: string;
@@ -24,33 +25,17 @@ export default function StockForm() {
 
   const [priceResponse, setData] = useState<PriceResponse | null>(null);
   const [loading, setLoading] = useState(false);
-  // TODO: add error handling
   const [error, setError] = useState<string | null>(null);
 
-  const getBestPrice = async (buyTime: number, sellTime: number) => {
+  const getBestProfit = async (buyTime: number, sellTime: number) => {
     try {
       setLoading(true);
-      // TODO: extract as config
-      const response = await axios.get<PriceResponse | null>(
-        `http://localhost:3030/api/v1/price/best?buyTime=${buyTime}&sellTime=${sellTime}`,
-      );
+      const response = await apiClient.fetchBestProfit(buyTime, sellTime);
 
       setData(response.data);
       setError(null);
     } catch (err) {
-      // TODO: clean up error
-      if (err instanceof AxiosError) {
-        const axiosError = err as AxiosError<ApiError>;
-        console.log(axiosError);
-        if (axiosError.response?.data?.message) {
-          setError(axiosError.response?.data?.message);
-        } else {
-          setError("Something went wrong");
-        }
-      } else {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        setError(err instanceof Error ? err.message : "Something went wrong");
-      }
+      setError(getAsyncErrorMessage(err));
       setData(null);
     } finally {
       setLoading(false);
@@ -58,9 +43,8 @@ export default function StockForm() {
   };
 
   const onSubmit = (data: Inputs) =>
-    getBestPrice(Number(data.buyTime), Number(data.sellTime));
+    getBestProfit(Number(data.buyTime), Number(data.sellTime));
 
-  // TODO: remove eslint override
   return (
     <div className="w-full max-w-xs flex flex-col">
       <form
@@ -111,7 +95,10 @@ export default function StockForm() {
               />
             )}
           />
-          <Error show={!!errors.sellTime} message="Please select time to sell." />
+          <Error
+            show={!!errors.sellTime}
+            message="Please select time to sell."
+          />
         </div>
         <input
           title="Get profit"

@@ -43,6 +43,5 @@ export default function LineChart({ data }: { data: Stock[] }) {
       },
     },
   };
-  // TODO: make responsive
   return <Line data={chartData} options={options} width={600} height={500} />;
 }
