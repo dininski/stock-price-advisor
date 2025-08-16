@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development node server.js",
     "start": "node server.js",
     "typecheck": "react-router typegen && tsc -b",
-    "test": "jest"
+    "test": "vitest"
   },
   "dependencies": {
     "@react-router/express": "^7.7.1",
@@ -32,7 +32,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "cross-env": "^7.0.3",
-    "jest": "^30.0.5",
+    "vitest": "^3.2.4",
     "tailwindcss": "^4.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",

@@ -1,4 +1,4 @@
-import type { Stock } from "../../../server/model/Stock";
+import type { Stock } from "../../model/Stock";
 import { calculateBestPrice } from "../../services/priceService";
 
 const generateData = (sample: number[]): Stock[] => {
