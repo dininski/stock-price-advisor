@@ -15,7 +15,7 @@ type Inputs = {
   sellTime: string;
 };
 
-export default function SubmitForm() {
+export default function StockForm() {
   const {
     control,
     handleSubmit,
@@ -68,9 +68,9 @@ export default function SubmitForm() {
       <form
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2"
       >
-        <div className="mb-4">
+        <div className="mb-2">
           <Label htmlFor="buyTime" text="Buy time"></Label>
           <Controller
             name="buyTime"
@@ -82,6 +82,8 @@ export default function SubmitForm() {
               <DatePicker
                 selected={value ? new Date(value) : null}
                 placeholderText="Buy time"
+                dateFormat="dd/MM/yyyy"
+                showTimeInput={true}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
                 onChange={onChange}
@@ -91,7 +93,7 @@ export default function SubmitForm() {
           />
           <Error show={!!errors.buyTime} message="Please select time to buy." />
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
           <Label htmlFor="sellTime" text="Sell time" />
           <Controller
             name="sellTime"
@@ -102,7 +104,9 @@ export default function SubmitForm() {
             render={({ field: { onChange, onBlur, value } }) => (
               <DatePicker
                 selected={value ? new Date(value) : null}
+                showTimeInput={true}
                 placeholderText="Sell time"
+                dateFormat="dd/MM/yyyy"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
                 onChange={onChange}
