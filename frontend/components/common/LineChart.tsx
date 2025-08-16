@@ -37,7 +37,7 @@ const isWithinQueryRange = (
   buyTime: number,
   sellTime: number,
 ) => {
-  return stock.date >= buyTime && stock.date <= sellTime;
+  return stock.date >= buyTime && stock.date < sellTime;
 };
 
 export default function LineChart({
@@ -58,6 +58,7 @@ export default function LineChart({
           borderColor: (ctx: ScriptableLineSegmentContext) => {
             if (stockDates !== null) {
               const current = data[ctx.p0DataIndex];
+              const next = data[ctx.p1DataIndex];
               if (
                 isWithinBestBuyRange(
                   current,
@@ -70,7 +71,7 @@ export default function LineChart({
 
               if (
                 isWithinQueryRange(
-                  current,
+                  next,
                   stockDates.buyTime,
                   stockDates.sellTime,
                 )
