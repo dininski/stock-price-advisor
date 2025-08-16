@@ -16,14 +16,15 @@ export default function ProfitCalculator(props: {
     setProfit(profit * investmentInputValue);
   };
   return (
-    <div className="max-w-sm p-2 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm p-2 bg-white border border-gray-200 bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2 text-gray-700">
       <Label htmlFor="investment" text="Amount to invest" />
       <input
         type="number"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         value={investment || undefined}
         onChange={onChange}
       />
-      <div>Profit: {potentialProfit}</div>
+      <div className="text-sm">Potential profit: {potentialProfit}</div>
     </div>
   );
 }

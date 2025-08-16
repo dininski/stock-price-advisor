@@ -6,10 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
 import { ApiError } from "shared/response/ApiError";
-import { Label } from "./common/Label";
-import { Error } from "./common/Error";
-import { AsyncOpWrapper } from "./common/AsyncOpResult";
-import Profit from "./profit/ProfitSection";
+import { Label } from "frontend/components/common/Label";
+import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
+import { Error } from "frontend/components/common/Error";
+import Profit from "frontend/components/profit/ProfitSection";
 type Inputs = {
   buyTime: string;
   sellTime: string;
@@ -111,7 +111,7 @@ export default function StockForm() {
               />
             )}
           />
-          <Error show={!!errors.buyTime} message="Please select time to buy." />
+          <Error show={!!errors.sellTime} message="Please select time to sell." />
         </div>
         <input
           title="Get profit"

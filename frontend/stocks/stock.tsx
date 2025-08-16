@@ -1,4 +1,4 @@
-import StockForm from "frontend/components/StockForm";
+import StockForm from "./StockForm";
 import StockDataView from "./StockDataView";
 
 export default () => {
