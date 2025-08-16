@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["dev.js", "./**/*"],
+  "include": ["./app.ts", "./**/*.ts"],
+  "exclude": ["./**/*.test.ts", "./build/**/*", "./vitest.config.js"],
   "compilerOptions": {
     "composite": true,
     "strict": true,
@@ -9,6 +10,6 @@
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "bundler",
-    "outDir": "build",
+    "outDir": "build"
   }
 }

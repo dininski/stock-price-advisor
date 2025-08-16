@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build --verbose --noEmit false",
     "start": "tsx ./app",
     "dev": "tsx watch ./app",
     "test": "vitest",
