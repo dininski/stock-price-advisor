@@ -5,12 +5,14 @@ import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
-import {ApiError} from "shared/response/Error"
+import { ApiError } from "shared/response/Error";
 import { formatEpoch } from "shared/lib/dateFormatter";
-
+import { Label } from "./Label";
+import { Error } from "./Error";
+import { AsyncOpWrapper } from "./AsyncOpResult";
 type Inputs = {
-  startDate: string;
-  endDate: string;
+  buyTime: string;
+  sellTime: string;
 };
 
 export default function SubmitForm() {
@@ -21,12 +23,13 @@ export default function SubmitForm() {
   } = useForm<Inputs>();
 
   const [profitResult, setData] = useState<PriceResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   // TODO: add error handling
   const [error, setError] = useState<string | null>(null);
 
   const getStockData = async (buyTime: number, sellTime: number) => {
     try {
+      setLoading(true);
       // TODO: extract as config
       const response = await axios.get<PriceResponse | null>(
         `http://localhost:3030/api/v1/price/best?buyTime=${buyTime}&sellTime=${sellTime}`,
@@ -38,9 +41,8 @@ export default function SubmitForm() {
       console.log(err);
       // TODO: clean up error
       if (err instanceof AxiosError) {
-
         const axiosError = err as AxiosError<ApiError>;
-      console.log(axiosError);
+        console.log(axiosError);
         if (axiosError.response?.data?.message) {
           setError(axiosError.response?.data?.message);
         } else {
@@ -58,7 +60,7 @@ export default function SubmitForm() {
   };
 
   const onSubmit = (data: Inputs) =>
-    getStockData(Number(data.startDate), Number(data.endDate));
+    getStockData(Number(data.buyTime), Number(data.sellTime));
 
   // TODO: remove eslint override
   return (
@@ -69,14 +71,9 @@ export default function SubmitForm() {
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
-            Start date
-          </label>
+          <Label htmlFor="buyTime" text="Buy time"></Label>
           <Controller
-            name="startDate"
+            name="buyTime"
             control={control}
             rules={{
               required: true,
@@ -84,29 +81,20 @@ export default function SubmitForm() {
             render={({ field: { onChange, onBlur, value } }) => (
               <DatePicker
                 selected={value ? new Date(value) : null}
+                placeholderText="Buy time"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholderText="Start date"
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
               />
             )}
           />
-          {errors.startDate && (
-            <p className="text-red-500 text-xs italic">
-              Please select time to buy.
-            </p>
-          )}
+          <Error show={!!errors.buyTime} message="Please select time to buy." />
         </div>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
-            End date
-          </label>
+          <Label htmlFor="sellTime" text="Sell time" />
           <Controller
-            name="endDate"
+            name="sellTime"
             control={control}
             rules={{
               required: true,
@@ -114,7 +102,7 @@ export default function SubmitForm() {
             render={({ field: { onChange, onBlur, value } }) => (
               <DatePicker
                 selected={value ? new Date(value) : null}
-                placeholderText="End date"
+                placeholderText="Sell time"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
                 onChange={onChange}
@@ -122,35 +110,29 @@ export default function SubmitForm() {
               />
             )}
           />
-          {errors.endDate && (
-            <p className="text-red-500 text-xs italic">
-              Please select time to sell.
-            </p>
-          )}
+          <Error show={!!errors.buyTime} message="Please select time to buy." />
         </div>
         <input
-          title="Calculate profit"
+          title="Get profit"
           type="submit"
-          value="Calculate profit"
+          value="Get profit"
           className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         />
       </form>
-      {
-        //TODO: sort out error handling
-      }
-      {!loading && error && <>{error}</>}
-
-      {!loading && !error && profitResult && (
-        <>
-          <div>Profit: {profitResult.profit}</div>
-          <div>
-            Buy date and time: {formatEpoch(profitResult.buyInformation.date)}
-          </div>
-          <div>
-            Sell date and time: {formatEpoch(profitResult.sellInformation.date)}
-          </div>
-        </>
-      )}
+      <AsyncOpWrapper loading={loading} errorText={error}>
+        {profitResult && (
+          <>
+            <div>Profit: {profitResult.profit}</div>
+            <div>
+              Buy date and time: {formatEpoch(profitResult.buyInformation.date)}
+            </div>
+            <div>
+              Sell date and time:{" "}
+              {formatEpoch(profitResult.sellInformation.date)}
+            </div>
+          </>
+        )}
+      </AsyncOpWrapper>
     </div>
   );
 }
