@@ -2,8 +2,8 @@ import { Router } from "express";
 import { getData } from "server/data";
 import { calculateBestPrice } from "server/services/priceService";
 import { respondError } from "server/util/express";
-import { ApiError } from "shared/response/ApiError";
-import { PriceResponse } from "shared/response/Price";
+import { ApiError } from "@stock-advisor/shared/response/ApiError";
+import { PriceResponse } from "@stock-advisor/shared/response/Price";
 import { Response } from "express";
 
 const router = Router({ strict: true });

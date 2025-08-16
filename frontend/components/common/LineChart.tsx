@@ -10,9 +10,9 @@ import {
   Legend,
   ScriptableLineSegmentContext,
 } from "chart.js";
-import { Stock } from "shared/model/Stock";
-import { formatEpoch } from "frontend/util/dateFormatter";
-import { StockDates } from "frontend/stocks/stock";
+import { Stock } from "@stock-advisor/shared/model/Stock";
+import { formatEpoch } from "@stock-advisor/frontend/util/dateFormatter";
+import { StockDates } from "@stock-advisor/frontend/stocks/stock";
 
 ChartJS.register(
   CategoryScale,

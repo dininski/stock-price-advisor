@@ -1,9 +1,9 @@
-import { Error } from "frontend/components/common/Error";
+import { Error } from "@stock-advisor/frontend/components/common/Error";
 import { ReactElement } from "react";
 
 export const AsyncOpWrapper = (props: {
   loading: boolean;
-  errorText: string | null;
+  errorText?: string | null;
   children: ReactElement | null;
 }) => {
   const { loading, errorText, children } = props;

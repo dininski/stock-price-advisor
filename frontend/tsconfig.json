@@ -2,10 +2,8 @@
   "extends": "../tsconfig.json",
   "include": [
     ".react-router/types/**/*",
-    "frontend/**/*",
-    "frontend/**/.server/**/*",
-    "frontend/**/.client/**/*",
-    "../shared/**/*",
+    "./**/*",
+    "./**/.client/**/*",
     "frontend.ts",
     "frontend.dev.js"
   ],

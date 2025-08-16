@@ -1,4 +1,4 @@
-import { Welcome } from "frontend/welcome/welcome";
+import { Welcome } from "@stock-advisor/frontend/welcome/welcome";
 
 export function meta() {
   return [

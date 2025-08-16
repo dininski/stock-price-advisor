@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Stock } from "shared/model/Stock";
-import { PriceResponse } from "shared/response/Price";
+import { Stock } from "@stock-advisor/shared/model/Stock";
+import { PriceResponse } from "@stock-advisor/shared/response/Price";
 
 const baseUrl = "localhost:3030";
 const scheme = "http";

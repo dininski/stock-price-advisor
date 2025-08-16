@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "dev": "node frontend.dev.js",
+    "start": "node frontend.dev.js",
     "typecheck": "react-router typegen && tsc -b",
     "test": "vitest",
     "lint": "eslint"
@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-router/express": "^7.7.1",
     "@react-router/node": "^7.7.1",
+    "@stock-advisor/shared": "*",
     "axios": "^1.11.0",
     "chart.js": "^4.3.0",
     "compression": "^1.7.5",

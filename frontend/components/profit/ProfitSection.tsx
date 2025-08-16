@@ -1,4 +1,4 @@
-import { PriceResponse } from "shared/response/Price";
+import { PriceResponse } from "@stock-advisor/shared/response/Price";
 import ProfitCalculator from "./ProfitCalculator";
 import { ProfitDisplay } from "./ProfitDisplay";
 

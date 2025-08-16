@@ -5,6 +5,7 @@
     { "path": "./server/" },
     { "path": "./frontend/" }
   ],
+  "exclude": ["build", "frontend/build", "server/build"],
   "compilerOptions": {
     "checkJs": true,
     "skipLibCheck": true,

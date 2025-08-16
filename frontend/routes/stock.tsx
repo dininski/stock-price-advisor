@@ -1,4 +1,4 @@
-import Stock from "frontend/stocks/stock";
+import Stock from "@stock-advisor/frontend/stocks/stock";
 
 export default () => {
   return <Stock />;

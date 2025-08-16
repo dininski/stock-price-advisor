@@ -3,12 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "TODO",
-    "dev": "node server.dev.js",
+    "build": "tsc --build",
+    "start": "node server.js",
     "test": "vitest",
     "lint": "eslint"
   },
   "dependencies": {
+    "@stock-advisor/shared": "*",
     "axios": "^1.11.0",
     "chart.js": "^4.3.0",
     "compression": "^1.7.5",

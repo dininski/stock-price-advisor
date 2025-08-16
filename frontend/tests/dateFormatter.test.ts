@@ -1,4 +1,4 @@
-import { formatEpoch } from "frontend/util/dateFormatter";
+import { formatEpoch } from "@stock-advisor/frontend/util/dateFormatter";
 
 describe("formatEpoch", () => {
   it("formats date correctly", () => {

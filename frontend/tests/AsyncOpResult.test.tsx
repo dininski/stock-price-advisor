@@ -1,4 +1,4 @@
-import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
+import { AsyncOpWrapper } from "@stock-advisor/frontend/components/common/AsyncOpResult";
 
 describe("AsyncOpResult", () => {
   it("Displays loading when loading", () => {

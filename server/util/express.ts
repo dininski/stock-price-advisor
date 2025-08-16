@@ -1,5 +1,5 @@
 import { Response } from "express-serve-static-core";
-import { ApiError } from "shared/response/ApiError";
+import { ApiError } from "@stock-advisor/shared/response/ApiError";
 
 export function respondError(
   res: Response<ApiError>,

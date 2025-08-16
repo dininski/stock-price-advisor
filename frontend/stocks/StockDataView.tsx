@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Stock } from "shared/model/Stock";
-import LineChart from "frontend/components/common/LineChart";
-import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
-import * as apiClient from "frontend/client";
-import { getAsyncErrorMessage } from "frontend/util";
+import { Stock } from "@stock-advisor/shared/model/Stock";
+import LineChart from "@stock-advisor/frontend/components/common/LineChart";
+import { AsyncOpWrapper } from "@stock-advisor/frontend/components/common/AsyncOpResult";
+import * as apiClient from "@stock-advisor/frontend/client";
+import { getAsyncErrorMessage } from "@stock-advisor/frontend/util";
 import { StockDates } from "./stock";
 
 const StockDataView = ({

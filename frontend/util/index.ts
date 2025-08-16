@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { ApiError } from "shared/response/ApiError";
+import { ApiError } from "@stock-advisor/shared/response/ApiError";
 
 export const getAsyncErrorMessage = (err: unknown): string => {
   if (err instanceof AxiosError) {

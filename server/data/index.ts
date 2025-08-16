@@ -1,4 +1,4 @@
-import type { Stock } from "shared/model/Stock";
+import type { Stock } from "@stock-advisor/shared/model/Stock";
 
 let data: Stock[];
 

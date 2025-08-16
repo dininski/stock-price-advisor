@@ -1,5 +1,5 @@
-import { formatEpoch } from "frontend/util/dateFormatter";
-import { PriceResponse } from "shared/response/Price";
+import { formatEpoch } from "@stock-advisor/frontend/util/dateFormatter";
+import { PriceResponse } from "@stock-advisor/shared/response/Price";
 
 export const ProfitDisplay = (props: { bestPrice: PriceResponse }) => (
   <div className="max-w-sm p-2 border border-gray-600 shadow-md rounded px-8 pt-4 pb-4 mb-2 text-gray-700">

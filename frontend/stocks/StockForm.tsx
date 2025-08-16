@@ -3,13 +3,13 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { PriceResponse } from "shared/response/Price";
-import { Label } from "frontend/components/common/Label";
-import { AsyncOpWrapper } from "frontend/components/common/AsyncOpResult";
-import { Error } from "frontend/components/common/Error";
-import Profit from "frontend/components/profit/ProfitSection";
-import * as apiClient from "frontend/client";
-import { getAsyncErrorMessage } from "frontend/util";
+import { PriceResponse } from "@stock-advisor/shared/response/Price";
+import { Label } from "@stock-advisor/frontend/components/common/Label";
+import { AsyncOpWrapper } from "@stock-advisor/frontend/components/common/AsyncOpResult";
+import { Error } from "@stock-advisor/frontend/components/common/Error";
+import Profit from "@stock-advisor/frontend/components/profit/ProfitSection";
+import * as apiClient from "@stock-advisor/frontend/client";
+import { getAsyncErrorMessage } from "@stock-advisor/frontend/util";
 import { StockDates } from "./stock";
 
 type Inputs = {

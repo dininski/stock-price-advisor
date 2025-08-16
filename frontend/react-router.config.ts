@@ -1,6 +1,6 @@
 import type { Config } from "@react-router/dev/config";
 
 export default {
-  appDirectory: "frontend",
+  appDirectory: "./",
   ssr: false,
 } satisfies Config;

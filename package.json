@@ -5,15 +5,11 @@
   "workspaces": [
     "server",
     "frontend",
-    "shared",
-    "sample"
+    "shared"
   ],
   "scripts": {
-    "build": "react-router build",
-    "server-dev": "node server.dev.js",
-    "frontend-dev": "node frontend.dev.js",
-    "typecheck": "react-router typegen && tsc -b",
-    "dev": "npx concurrently 'npm run server-dev' 'npm run frontend-dev'",
+    "build": "tsc --build",
+    "dev": "",
     "test": "vitest",
     "lint": "eslint"
   },

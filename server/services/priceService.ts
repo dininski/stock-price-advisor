@@ -1,5 +1,5 @@
-import type { Stock } from "shared/model/Stock";
-import { PriceResponse } from "shared/response/Price";
+import type { Stock } from "@stock-advisor/shared/model/Stock";
+import { PriceResponse } from "@stock-advisor/shared/response/Price";
 
 const findElementPosition = (
   data: Stock[],
