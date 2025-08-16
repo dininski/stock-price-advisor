@@ -1,7 +1,42 @@
 import type { Stock } from "shared/model/Stock";
 import { PriceResponse } from "shared/response/Price";
 
-const calculateBestPrice = (stock: Stock[]): PriceResponse | null => {
+const findElementPosition = (
+  data: Stock[],
+  time: number,
+  roundUp: boolean,
+): number => {
+  if (time < data[0].date) {
+    throw new Error("Time is lower than the minimum value allowed");
+  }
+
+  if (time > data[data.length - 1].date) {
+    throw new Error("Time is higher that the minimum value allowed");
+  }
+
+  let start = 0;
+  let end = data.length - 1;
+
+  while (start <= end) {
+    const mid = Math.floor((start + end) / 2);
+
+    if (data[mid].date === time) {
+      return mid;
+    } else if (data[mid].date < time) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return roundUp ? start : start - 1;
+};
+
+const calculateBestPrice = (
+  stock: Stock[],
+  buyTime: number,
+  sellTime: number,
+): PriceResponse | null => {
   let isProfitable = false;
   if (stock.length < 2) {
     throw new Error(
@@ -9,12 +44,19 @@ const calculateBestPrice = (stock: Stock[]): PriceResponse | null => {
     );
   }
 
-  let minBuy = stock[0];
+  if (buyTime > sellTime) {
+    throw new Error("Buy time cannot be before sell time.");
+  }
+
+  const startPosition = findElementPosition(stock, buyTime, true);
+  const endPosition = findElementPosition(stock, sellTime, false);
+
+  let minBuy = stock[startPosition];
   let maxProfit = 0;
   let bestBuy = stock[0];
   let bestSell = stock[1];
 
-  for (let i = 0; i < stock.length; i++) {
+  for (let i = startPosition; i < endPosition + 1; i++) {
     const profit = stock[i].price - minBuy.price;
     if (profit > maxProfit) {
       isProfitable = true;
@@ -43,4 +85,4 @@ const calculateBestPrice = (stock: Stock[]): PriceResponse | null => {
     : null;
 };
 
-export { calculateBestPrice };
+export { calculateBestPrice, findElementPosition };

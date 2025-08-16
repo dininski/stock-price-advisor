@@ -5,7 +5,7 @@ import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
-import { ApiError } from "shared/response/Error";
+import { ApiError } from "shared/response/ApiError";
 import { formatEpoch } from "shared/lib/dateFormatter";
 import { Label } from "./Label";
 import { Error } from "./Error";

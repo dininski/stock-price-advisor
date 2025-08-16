@@ -1,31 +1,45 @@
 import { Router } from "express";
 import { getData } from "server/data";
 import { calculateBestPrice } from "server/services/priceService";
+import { respondError } from "server/util/express";
+import { ApiError } from "shared/response/ApiError";
+import { PriceResponse } from "shared/response/Price";
+import { Response } from "express";
 
 const router = Router({ strict: true });
 
-router.get("/best", (req, res) => {
-  const { buyTime: buyTimeQueryParam, sellTime: sellTimeQueryParam } = req.query;
+router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
+  const { buyTime: buyTimeQueryParam, sellTime: sellTimeQueryParam } =
+    req.query;
   //TODO: clean up error handling
   if (!buyTimeQueryParam || !sellTimeQueryParam) {
-    console.log(buyTimeQueryParam, sellTimeQueryParam)
-    res.status(400);
-    return res.send({ message: "Provide both a buy time and a sell time.", code: 1 });
+    return respondError(res, "Provide both a buy time and a sell time.", 1);
   }
 
   const buyTime = Number(buyTimeQueryParam);
   const sellTime = Number(sellTimeQueryParam);
+
   if (Number.isNaN(buyTime) || Number.isNaN(sellTime)) {
-    res.status(400);
-    return res.send({ message: "Invalid date and time format provided.", code: 2 });
+    return respondError(res, "Invalid date and time format provided.", 2);
   }
 
   if (buyTime > sellTime) {
-    res.status(400);
-    return res.send({ message: "Sell time cannot be after buy time.", code: 3 });
+    return respondError(res, "Sell time cannot be after buy time.", 3);
   }
 
-  const result = calculateBestPrice(getData());
+  const data = getData();
+
+  if (buyTime < data[0].date) {
+    console.log(buyTime)
+    console.log(data[0].date)
+    return respondError(res, "Buy time is outside of known stock values.", 4);
+  }
+
+  if (sellTime < data[0].date) {
+    return respondError(res, "Sell time is outside of known stock values.", 5);
+  }
+
+  const result = calculateBestPrice(getData(), buyTime, sellTime);
   res.status(200);
   res.send(result);
 });

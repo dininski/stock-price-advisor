@@ -1,4 +1,4 @@
-import { calculateBestPrice } from "server/services/priceService";
+import { calculateBestPrice, findElementPosition } from "server/services/priceService";
 import { Stock } from "shared/model/Stock";
 
 const generateData = (sample: number[]): Stock[] => {
@@ -12,7 +12,7 @@ describe("priceService", () => {
   describe("calculateBestPrice", () => {
     it("calculates for ascending price", () => {
       const prices = generateData([1, 2, 3, 4, 5]);
-      const result = calculateBestPrice(prices);
+      const result = calculateBestPrice(prices, 0, 4);
       expect(result).not.toBe(null);
       expect(result!.profit).toEqual(4);
       expect(result!.buyInformation.date).toEqual(0);
@@ -21,7 +21,7 @@ describe("priceService", () => {
 
     it("calculates when best price is in the middle", () => {
       const prices = generateData([5, 6, 1, 4, 2, 3]);
-      const result = calculateBestPrice(prices);
+      const result = calculateBestPrice(prices, 0, 5);
       expect(result).not.toBe(null);
       expect(result!.profit).toEqual(3);
       expect(result!.buyInformation.date).toEqual(2);
@@ -30,7 +30,7 @@ describe("priceService", () => {
 
     it("calculates when best price is first transaction", () => {
       const prices = generateData([1, 100, 2, 3, 4, 5, 6, 6]);
-      const result = calculateBestPrice(prices);
+      const result = calculateBestPrice(prices, 0, 7);
       expect(result).not.toBe(null);
 
       expect(result!.profit).toEqual(99);
@@ -40,13 +40,40 @@ describe("priceService", () => {
 
     it("throws when less than 2 prices provided", () => {
       const prices = generateData([1]);
-      expect(() => calculateBestPrice(prices)).toThrow();
+      expect(() => calculateBestPrice(prices, 0, 1000)).toThrow();
+    });
+
+    it("throws when sell date is before buy date", () => {
+      const prices = generateData([1]);
+      expect(() => calculateBestPrice(prices, 1000, 0)).toThrow();
     });
 
     it("returns null when descending", () => {
       const prices = generateData([5, 4, 3, 2, 1]);
-      const result = calculateBestPrice(prices);
+      const result = calculateBestPrice(prices, 0, 4);
       expect(result).toBe(null);
     });
+  });
+
+  describe("findElementPosition", () => {
+    it("throws when element out of range (min)", () => {
+      expect(() => findElementPosition(generateData([1,2]), -1, true)).toThrow()
+    });
+
+    it("throws when element out of range (max)", () => {
+      expect(() => findElementPosition(generateData([1,2]), 2, false)).toThrow()
+    });
+
+    it("rounds up correctly", () => {
+      const data = generateData([0,0,0,0]).map((val) => ({price: val.price, date: val.date * 2}));
+      const result = findElementPosition(data, 1, false)
+      expect(result).toEqual(0);
+    })
+
+    it("rounds down correctly", () => {
+      const data = generateData([0,0,0,0]).map((val) => ({price: val.price, date: val.date * 2}));
+      const result = findElementPosition(data, 1, true)
+      expect(result).toEqual(1);
+    })
   });
 });
