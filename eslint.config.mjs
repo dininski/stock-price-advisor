@@ -1,8 +1,8 @@
 // @ts-check
 
-import eslint from '@eslint/js';
+import eslint from "@eslint/js";
 import { defineConfig, globalIgnores } from "eslint/config";
-import tseslint from 'typescript-eslint';
+import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -15,5 +15,11 @@ export default tseslint.config(
       },
     },
   },
-  globalIgnores(["build/*", ".react-router", "node_modules", "*.config.*", "server.js"])
+  globalIgnores([
+    "build/*",
+    ".react-router",
+    "node_modules",
+    "*.config.*",
+    "server.js",
+  ]),
 );

@@ -1,4 +1,4 @@
 export type Stock = {
-    price: number,
-    date: number
-}
+  price: number;
+  date: number;
+};
