@@ -8,9 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
-  ChartData,
 } from "chart.js";
-
+import { Stock } from "~/model/Stock";
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +21,18 @@ ChartJS.register(
   Legend,
 );
 
-export default function Landing({data}: {data: ChartData<"line", {x:number, y:number}[], string>}) {
+export default function LineChart({ data }: { data: Stock[] }) {
+  const chartData = {
+    datasets: [
+      {
+        label: "Stock price",
+        data: data.map((val) => ({ y: val.price, x: val.date })),
+        borderColor: "rgba(46, 174, 133, 1)",
+        backgroundColor: "rgba(16, 85, 88, 0.5)",
+      },
+    ],
+    labels: data.map((val) => val.date),
+  };
   // TODO: make responsive
-  return <Line data={data} width={600} height={400}/>;
+  return <Line data={chartData} width={600} height={500} />;
 }

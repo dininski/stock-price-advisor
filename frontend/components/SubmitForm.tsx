@@ -1,20 +1,47 @@
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
+import { useEffect, useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Stock } from "~/model/Stock";
+import { PriceResponse } from "~/routes/price/priceModel";
+import axios from "axios";
 
 type Inputs = {
   startDate: string;
   endDate: string;
 };
 
-export default function DateRangeForm() {
+export default function SubmitForm() {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit = (data: Inputs) => console.log(data);
+
+  const [profitResult, setData] = useState<PriceResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  // TODO: add error handling
+  const [error, setError] = useState<Error | null>(null);
+
+  const getStockData = async (buyTime: number, sellTime: number) => {
+    try {
+      const response = await axios.get<PriceResponse | null>(
+        `http://localhost:3030/api/v1/price/best?buyTime=${buyTime}&sellTime=${sellTime}`,
+      );
+
+      setData(response.data);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+      setData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmit = (data: Inputs) =>
+    getStockData(Number(data.startDate), Number(data.endDate));
 
   // TODO: remove eslint override
   return (
@@ -39,6 +66,7 @@ export default function DateRangeForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <DatePicker
+                selected={value ? new Date(value) : null}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholderText="Start date"
                 onBlur={onBlur}
@@ -68,6 +96,7 @@ export default function DateRangeForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <DatePicker
+                selected={value ? new Date(value) : null}
                 placeholderText="End date"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
@@ -83,11 +112,23 @@ export default function DateRangeForm() {
           )}
         </div>
         <input
-          title="Submit"
+          title="Calculate profit"
           type="submit"
+          value="Calculate profit"
           className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         />
       </form>
+      {profitResult && (
+        <>
+          <div>Profit: {profitResult.profit}</div>
+          <div>
+            Buy date: {new Date(profitResult.buyInformation.date).toString()}
+          </div>
+          <div>
+            Sell date: {new Date(profitResult.sellInformation.date).toString()}
+          </div>
+        </>
+      )}
     </div>
   );
 }

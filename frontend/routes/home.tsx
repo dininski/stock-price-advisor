@@ -1,4 +1,3 @@
-// import Landing from "~/Landing";
 import { Welcome } from "~/welcome/welcome";
 
 export function meta() {

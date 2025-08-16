@@ -1,18 +1,23 @@
 import { Router } from "express";
+import { getData } from "~/data";
+import { calculateBestPrice } from "~/services/priceService";
 
 const router = Router({ strict: true });
 
-const data: number[] = [];
-
 router.get("/best", (req, res) => {
-  const { startTime, endTime } = req.query;
-  if (!!startTime || !!endTime) {
-    //TODO: add error handling
+  const { buyTime, sellTime } = req.query;
+  console.log(buyTime, sellTime);
+  if (!buyTime || !sellTime) {
+    //TODO: clean up error handling
     res.status(400);
+    console.log("err");
+    res.send({ error: "Provide both buyTime and sellTime." });
     return;
   }
+
+  const result = calculateBestPrice(getData());
   res.status(200);
-  res.send(JSON.stringify(data));
+  res.send(result);
 });
 
 export default router;

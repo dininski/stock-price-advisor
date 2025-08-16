@@ -20,6 +20,7 @@ export default tseslint.config(
     ".react-router",
     "node_modules",
     "*.config.*",
-    "server.js",
+    "frontend.dev.js",
+    "server.dev.js"
   ]),
 );
