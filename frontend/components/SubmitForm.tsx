@@ -3,8 +3,9 @@ import DatePicker from "react-datepicker";
 import { useState } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { PriceResponse } from "shared/response/Price";
+import {ApiError} from "shared/response/Error"
 
 type Inputs = {
   startDate: string;
@@ -33,7 +34,22 @@ export default function SubmitForm() {
       setData(response.data);
       setError(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      console.log(err);
+      // TODO: clean up error
+      if (err instanceof AxiosError) {
+
+        const axiosError = err as AxiosError<ApiError>;
+      console.log(axiosError);
+        if (axiosError.response?.data?.message) {
+          setError(axiosError.response?.data?.message);
+        } else {
+          setError("Something went wrong");
+        }
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong");
+      }
       setData(null);
     } finally {
       setLoading(false);

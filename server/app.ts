@@ -11,4 +11,4 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.use("/api/v1/", api);
 
-export default app;
+export { app };
