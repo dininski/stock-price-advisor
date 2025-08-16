@@ -11,7 +11,7 @@ const findElementPosition = (
   }
 
   if (time > data[data.length - 1].date) {
-    throw new Error("Time is higher that the minimum value allowed");
+    throw new Error("Time is higher that the maximum value allowed");
   }
 
   let start = 0;

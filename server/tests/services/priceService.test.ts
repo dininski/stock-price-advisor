@@ -48,7 +48,17 @@ describe("priceService", () => {
       expect(() => calculateBestPrice(prices, 1000, 0)).toThrow();
     });
 
-    it("returns null when descending", () => {
+    it("throws when buy date outside of range", () => {
+      const prices = generateData([1, 2, 3]);
+      expect(() => calculateBestPrice(prices, -1, 2)).toThrow();
+    });
+
+    it("throws when sell date outside of range", () => {
+      const prices = generateData([1, 2, 3]);
+      expect(() => calculateBestPrice(prices, 0, 5)).toThrow();
+    });
+
+    it("returns correctly when descending", () => {
       const prices = generateData([5, 4, 3, 2, 1]);
       const result = calculateBestPrice(prices, 0, 4);
       expect(result?.profit).toEqual(-1);

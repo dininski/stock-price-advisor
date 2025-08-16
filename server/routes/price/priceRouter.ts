@@ -32,7 +32,7 @@ router.get("/best", (req, res: Response<ApiError | PriceResponse | null>) => {
     return respondError(res, "Buy time is outside of known stock values.", 4);
   }
 
-  if (sellTime < data[0].date) {
+  if (sellTime > data[data.length - 1].date) {
     return respondError(res, "Sell time is outside of known stock values.", 5);
   }
 
