@@ -62,7 +62,7 @@ export default function StockForm({
     <div className="w-full max-w-xs flex flex-col">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2"
+        className="rounded px-8 pt-4 pb-4 mb-2 border border-gray-600"
       >
         <div className="mb-2">
           <Label htmlFor="buyTime" text="Buy time"></Label>

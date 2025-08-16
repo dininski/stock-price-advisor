@@ -19,7 +19,7 @@ export default function ProfitCalculator(props: {
     setProfit(roundedCalculatedProfit);
   };
   return (
-    <div className="max-w-sm p-2 bg-white border border-gray-200 bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2 text-gray-700">
+    <div className="max-w-sm p-2 border border-gray-600 shadow-md rounded px-8 pt-4 pb-4 mb-2 text-gray-700">
       <Label htmlFor="investment" text="Amount to invest" />
       <input
         type="number"

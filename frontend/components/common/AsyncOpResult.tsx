@@ -3,8 +3,8 @@ import { ReactElement } from "react";
 
 export const AsyncOpWrapper = (props: {
   loading: boolean;
-  errorText?: string;
-  children?: ReactElement;
+  errorText: string | null;
+  children: ReactElement | null;
 }) => {
   const { loading, errorText, children } = props;
   if (loading) {
