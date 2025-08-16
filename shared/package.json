@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc --build",
-    "lint": "eslint"
+    "build": "tsc",
+    "lint": "eslint",
+    "check-format": "npx prettier . --write",
+    "format": "npx prettier . --write"
   },
   "dependencies": {},
   "devDependencies": {
@@ -13,6 +15,7 @@
     "@types/node": "^22",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.39.0"
+    "typescript-eslint": "^8.39.0",
+    "prettier": "^3.6.2"
   }
 }
