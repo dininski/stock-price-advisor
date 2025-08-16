@@ -1,6 +1,6 @@
 import "react-router";
 import api from './routes'
-import express, { Router } from "express";
+import express from "express";
 
 declare module "react-router" {
   interface AppLoadContext {

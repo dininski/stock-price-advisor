@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router({strict: true});
 
-const data: Number[] = [];
+const data: number[] = [];
 
 router.get('/best', (req, res) => {
     const {startTime, endTime} = req.query;
