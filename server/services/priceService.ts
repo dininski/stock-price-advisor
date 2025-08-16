@@ -4,6 +4,10 @@ import type { PriceResponse } from "server/routes/price/priceModel";
 // TODO: change return type
 // TODO: error handling
 const calculateBestPrice = (stock: Stock[]): PriceResponse => {
+  if (stock.length < 2) {
+    throw new Error('Not enough data points for stock. More ticker prices necessary');
+  }
+
   let minBuy = stock[0];
   let maxProfit = -Infinity;
   let bestBuy = stock[0];

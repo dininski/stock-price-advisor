@@ -1,4 +1,5 @@
-import Landing from "~/Landing";
+// import Landing from "~/Landing";
+import { Welcome } from "~/welcome/welcome";
 
 export function meta() {
   return [
@@ -8,5 +9,5 @@ export function meta() {
 }
 
 export default function Home() {
-  return <Landing />;
+  return <Welcome message="Hello" />;
 }
