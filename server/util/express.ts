@@ -1,7 +1,7 @@
 import { Response } from "express-serve-static-core";
 import { ApiError } from "shared/response/ApiError";
 
-export function respondError (
+export function respondError(
   res: Response<ApiError>,
   message: string,
   code: number,
@@ -9,4 +9,4 @@ export function respondError (
 ) {
   res.status(statusCode);
   return res.send({ message, code });
-};
+}

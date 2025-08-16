@@ -1,4 +1,7 @@
-import { calculateBestPrice, findElementPosition } from "server/services/priceService";
+import {
+  calculateBestPrice,
+  findElementPosition,
+} from "server/services/priceService";
 import { Stock } from "shared/model/Stock";
 
 const generateData = (sample: number[]): Stock[] => {
@@ -57,23 +60,33 @@ describe("priceService", () => {
 
   describe("findElementPosition", () => {
     it("throws when element out of range (min)", () => {
-      expect(() => findElementPosition(generateData([1,2]), -1, true)).toThrow()
+      expect(() =>
+        findElementPosition(generateData([1, 2]), -1, true),
+      ).toThrow();
     });
 
     it("throws when element out of range (max)", () => {
-      expect(() => findElementPosition(generateData([1,2]), 2, false)).toThrow()
+      expect(() =>
+        findElementPosition(generateData([1, 2]), 2, false),
+      ).toThrow();
     });
 
     it("rounds up correctly", () => {
-      const data = generateData([0,0,0,0]).map((val) => ({price: val.price, date: val.date * 2}));
-      const result = findElementPosition(data, 1, false)
+      const data = generateData([0, 0, 0, 0]).map((val) => ({
+        price: val.price,
+        date: val.date * 2,
+      }));
+      const result = findElementPosition(data, 1, false);
       expect(result).toEqual(0);
-    })
+    });
 
     it("rounds down correctly", () => {
-      const data = generateData([0,0,0,0]).map((val) => ({price: val.price, date: val.date * 2}));
-      const result = findElementPosition(data, 1, true)
+      const data = generateData([0, 0, 0, 0]).map((val) => ({
+        price: val.price,
+        date: val.date * 2,
+      }));
+      const result = findElementPosition(data, 1, true);
       expect(result).toEqual(1);
-    })
+    });
   });
 });

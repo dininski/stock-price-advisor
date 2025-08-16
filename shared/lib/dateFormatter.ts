@@ -8,7 +8,6 @@ const formatEpoch = (epoch: number): string => {
     minute: "2-digit",
     second: "2-digit",
     hour12: false,
-    timeZone: "GMT"
   };
   return Intl.DateTimeFormat("en-UK", { ...opts }).format(date);
 };

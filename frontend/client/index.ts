@@ -29,8 +29,4 @@ const fetchBestProfit = async (buyTime: number, sellTime: number) => {
   return response;
 };
 
-export {
-  regenerateData,
-  fetchStockData,
-  fetchBestProfit,
-};
+export { regenerateData, fetchStockData, fetchBestProfit };
