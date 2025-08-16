@@ -34,5 +34,5 @@ export default tseslint.config(
     "*.config.*",
     "frontend.dev.js",
     "dev.js",
-  ])
+  ]),
 );
