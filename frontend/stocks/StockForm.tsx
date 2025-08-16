@@ -78,7 +78,7 @@ export default function StockForm({
                 placeholderText="Buy time"
                 dateFormat="dd/MM/yyyy"
                 showTimeInput={true}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
@@ -101,7 +101,7 @@ export default function StockForm({
                 showTimeInput={true}
                 placeholderText="Sell time"
                 dateFormat="dd/MM/yyyy"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
