@@ -1,9 +1,9 @@
 import { AxiosError } from "axios";
-import { ApiError } from "@stock-advisor/shared/response/ApiError";
+import { ErrorResponse } from "@stock-advisor/shared/response/ErrorResponse";
 
 export const getAsyncErrorMessage = (err: unknown): string => {
   if (err instanceof AxiosError) {
-    const axiosError = err as AxiosError<ApiError>;
+    const axiosError = err as AxiosError<ErrorResponse>;
     if (axiosError.response?.data?.message) {
       return axiosError.response?.data?.message;
     } else {

@@ -1,17 +1,18 @@
 import type { Stock } from "@stock-advisor/shared/model/Stock";
 import { PriceResponse } from "@stock-advisor/shared/response/Price";
+import { ValidationError } from "server/util/errors";
 
 const findElementPosition = (
   data: Stock[],
   time: number,
-  roundUp: boolean,
+  roundUp: boolean
 ): number => {
   if (time < data[0].date) {
-    throw new Error("Time is lower than the minimum value allowed");
+    throw new ValidationError("Time is lower than the minimum value available.");
   }
 
   if (time > data[data.length - 1].date) {
-    throw new Error("Time is higher that the maximum value allowed");
+    throw new ValidationError("Time is higher that the maximum value available.");
   }
 
   let start = 0;
@@ -35,20 +36,24 @@ const findElementPosition = (
 const calculateBestPrice = (
   stock: Stock[],
   buyTime: number,
-  sellTime: number,
+  sellTime: number
 ): PriceResponse => {
   if (stock.length < 2) {
-    throw new Error(
-      "Not enough data points for stock. More ticker prices needed.",
+    throw new ValidationError(
+      "Not enough data points for stock. More ticker prices needed."
     );
   }
 
   if (buyTime > sellTime) {
-    throw new Error("Buy time cannot be before sell time.");
+    throw new ValidationError("Buy time cannot be before sell time.");
   }
 
   const startPosition = findElementPosition(stock, buyTime, true);
   const endPosition = findElementPosition(stock, sellTime, false);
+
+  if (startPosition === endPosition) {
+    throw new ValidationError("Selected period is too short.");
+  }
 
   let minBuy = stock[startPosition];
   let maxProfit = -Infinity;

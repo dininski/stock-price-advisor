@@ -4,6 +4,7 @@ import express from "express";
 import morgan from "morgan";
 import compression from "compression";
 import cors from "cors";
+import { errorMiddleware } from "./middleware";
 
 const PORT = Number.parseInt(process.env.PORT || "3030");
 
@@ -15,6 +16,7 @@ app.use(morgan("tiny"));
 app.use(express.json());
 app.disable("x-powered-by");
 app.use("/api/v1/", api);
+app.use(errorMiddleware);
 app.listen(PORT, () => {
   console.log(`Backend server is running on port: ${PORT}`);
 });

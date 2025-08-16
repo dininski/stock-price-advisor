@@ -1,12 +1,11 @@
 import { Response } from "express-serve-static-core";
-import { ApiError } from "@stock-advisor/shared/response/ApiError";
+import { ErrorResponse } from "@stock-advisor/shared/response/ErrorResponse";
 
 export function respondError(
-  res: Response<ApiError>,
+  res: Response<ErrorResponse>,
   message: string,
-  code: number,
-  statusCode: number = 400,
+  statusCode: number = 500,
 ) {
   res.status(statusCode);
-  return res.send({ message, code });
+  return res.send({ message });
 }
