@@ -12,8 +12,11 @@ export default function ProfitCalculator(props: {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const investmentInputValue = Number(e.target.value);
     setInvestment(investmentInputValue);
+    const calculatedProfit = profit * investmentInputValue;
+    const roundedCalculatedProfit =
+      Math.round((calculatedProfit + Number.EPSILON) * 100) / 100;
 
-    setProfit(profit * investmentInputValue);
+    setProfit(roundedCalculatedProfit);
   };
   return (
     <div className="max-w-sm p-2 bg-white border border-gray-200 bg-white shadow-md rounded px-8 pt-4 pb-4 mb-2 text-gray-700">

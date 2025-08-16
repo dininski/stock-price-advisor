@@ -1,4 +1,4 @@
-import { formatEpoch } from "shared/lib/dateFormatter";
+import { formatEpoch } from "frontend/util/dateFormatter";
 import { PriceResponse } from "shared/response/Price";
 
 export const ProfitDisplay = (props: { bestPrice: PriceResponse }) => (

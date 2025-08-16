@@ -1,4 +1,4 @@
-import { formatEpoch } from "server/util/dateFormatter";
+import { formatEpoch } from "frontend/util/dateFormatter";
 
 describe("formatEpoch", () => {
   it("formats date correctly", () => {

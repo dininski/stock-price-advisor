@@ -11,7 +11,7 @@ import {
   ScriptableLineSegmentContext,
 } from "chart.js";
 import { Stock } from "shared/model/Stock";
-import { formatEpoch } from "shared/lib/dateFormatter";
+import { formatEpoch } from "frontend/util/dateFormatter";
 import { StockDates } from "frontend/stocks/stock";
 
 ChartJS.register(

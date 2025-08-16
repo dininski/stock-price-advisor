@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["shared/**/*", "server/util/dateFormatter.ts", "server/tests/dateFormatter.test.ts"],
+  "include": ["shared/**/*"],
   "compilerOptions": {
     "composite": true,
     "strict": true,

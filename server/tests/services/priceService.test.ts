@@ -16,29 +16,26 @@ describe("priceService", () => {
     it("calculates for ascending price", () => {
       const prices = generateData([1, 2, 3, 4, 5]);
       const result = calculateBestPrice(prices, 0, 4);
-      expect(result).not.toBe(null);
-      expect(result!.profit).toEqual(4);
-      expect(result!.buyInformation.date).toEqual(0);
-      expect(result!.sellInformation.date).toEqual(4);
+      expect(result.profit).toEqual(4);
+      expect(result.buyInformation.date).toEqual(0);
+      expect(result.sellInformation.date).toEqual(4);
     });
 
     it("calculates when best price is in the middle", () => {
       const prices = generateData([5, 6, 1, 4, 2, 3]);
       const result = calculateBestPrice(prices, 0, 5);
-      expect(result).not.toBe(null);
-      expect(result!.profit).toEqual(3);
-      expect(result!.buyInformation.date).toEqual(2);
-      expect(result!.sellInformation.date).toEqual(3);
+      expect(result.profit).toEqual(3);
+      expect(result.buyInformation.date).toEqual(2);
+      expect(result.sellInformation.date).toEqual(3);
     });
 
     it("calculates when best price is first transaction", () => {
       const prices = generateData([1, 100, 2, 3, 4, 5, 6, 6]);
       const result = calculateBestPrice(prices, 0, 7);
-      expect(result).not.toBe(null);
 
-      expect(result!.profit).toEqual(99);
-      expect(result!.buyInformation.date).toEqual(0);
-      expect(result!.sellInformation.date).toEqual(1);
+      expect(result.profit).toEqual(99);
+      expect(result.buyInformation.date).toEqual(0);
+      expect(result.sellInformation.date).toEqual(1);
     });
 
     it("throws when less than 2 prices provided", () => {
