@@ -41,5 +41,6 @@ const data = {
 };
 
 export default function Landing() {
-  return <Line data={data} />;
+  // TODO: make responsive
+  return <Line data={data} width={1000} height={400}/>;
 }
