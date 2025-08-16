@@ -3,8 +3,8 @@ import { ReactElement } from "react";
 
 export const AsyncOpWrapper = (props: {
   loading: boolean;
-  errorText: string | null;
-  children: ReactElement | null;
+  errorText?: string;
+  children?: ReactElement;
 }) => {
   const { loading, errorText, children } = props;
   if (loading) {
@@ -12,6 +12,6 @@ export const AsyncOpWrapper = (props: {
   } else if (errorText) {
     return <Error show={true} message={errorText} />;
   } else {
-    return children;
+    return <>{children}</>;
   }
 };

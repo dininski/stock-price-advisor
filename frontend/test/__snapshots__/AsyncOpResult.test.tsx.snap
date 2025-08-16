@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AsyncOpResult > Display children when loaded and no error 1`] = `
+<AsyncOpWrapper
+  loading={false}
+>
+  <div>
+    On success
+  </div>
+</AsyncOpWrapper>
+`;
+
+exports[`AsyncOpResult > Displays error when loaded and has error 1`] = `
+<AsyncOpWrapper
+  errorText="error text"
+  loading={false}
+>
+  <div>
+    On success
+  </div>
+</AsyncOpWrapper>
+`;
+
+exports[`AsyncOpResult > Displays loading when loading 1`] = `
+<AsyncOpWrapper
+  loading={true}
+>
+  <div>
+    On success
+  </div>
+</AsyncOpWrapper>
+`;

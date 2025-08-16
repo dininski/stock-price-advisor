@@ -8,7 +8,7 @@
     "shared/**/*",
     "frontend.ts",
     "frontend.dev.js"
-  ],
+, "server/util/dateFormatter.ts", "server/tests/dateFormatter.test.ts"  ],
   "compilerOptions": {
     "composite": true,
     "strict": true,
